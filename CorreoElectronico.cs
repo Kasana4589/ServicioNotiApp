@@ -13,16 +13,16 @@ public class CorreoElectronico: Notificacion
         get => _asunto;
         private set {
             if (string.IsNullOrWhiteSpace(value)) 
-               _asunto = "Sin cuerpo";
-        if (value.Length >50) throw new ArgumentOutOfRangeException("La caracteres del asunto no pueden ser mayor a 50.");
-        _asunto = value;
+               value = "Sin cuerpo";
+            if (value.Length >50) throw new ArgumentOutOfRangeException("La caracteres del asunto no pueden ser mayor a 50.");
+             _asunto = value;
         }
     }
-    public double ArchivosAdjuntos //Los archivos adjuntos no pueden superar el peso de 2MB
+    public double ArchivosAdjuntos //Los archivos adjuntos no pueden superar el peso de 25MB
     {
         get => _archivosAdjuntos;
         private set {
-          if (value < 0 || value > 25) throw new ArgumentOutOfRangeException("Lo archivos adjuntos no puden tener más de 25 mb");
+          if (value < 0 || value > 25) throw new ArgumentOutOfRangeException("Lo archivos adjuntos no puden tener más de 25 MB o ser negativos");
           _archivosAdjuntos = value;
         }
     }
@@ -63,7 +63,7 @@ public class CorreoElectronico: Notificacion
     }
     protected override void EnviarReal()
     {
-
+        Console.WriteLine($"Enviando correo a {Destinatario}: {Mensaje}");
     }
     protected override void Finalizar()
     {
@@ -74,13 +74,13 @@ public class CorreoElectronico: Notificacion
     public override string ImprimirInformacion()
     {
         return $@"----- NOTIFICACIÓN -----
- Asunto: {Asunto}
- Es: {CC_CCO}
- Mensaje: {Mensaje}
- Destinatario: {Destinatario}
- Estado: {Estado}
- Fecha de envío: {FechaEnvio}
- Tamaño archivos adjuntos: {ArchivosAdjuntos}";
+Asunto: {Asunto}
+Es: {CC_CCO}
+Mensaje: {Mensaje}
+Destinatario: {Destinatario}
+Estado: {Estado}
+Fecha de envío: {FechaEnvio}
+Tamaño archivos adjuntos: {ArchivosAdjuntos}";
          
     }
 }

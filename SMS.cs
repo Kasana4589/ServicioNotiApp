@@ -1,7 +1,7 @@
 ﻿/// <summary>
 /// Tipo de notificación: Mensaje SMS
 /// </summary>
-public class Sms : Notificacion
+public class SMS : Notificacion
 {
     // Atributos encapsulados
     private string? _numeroTelefono;
@@ -52,7 +52,7 @@ public class Sms : Notificacion
     /// <summary>
     /// Constructor del SMS
     /// </summary>
-    public Sms(string mensaje, string numeroTelefono)
+    public SMS(string mensaje, string numeroTelefono)
       : base(mensaje, numeroTelefono)
     {
         NumeroTelefono = numeroTelefono;
